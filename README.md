@@ -1,55 +1,20 @@
 # Turpal - Technical Challenge
 
-## Description
+clone the repository,
 
-Imagine you are working for a travel company called _Travello_.
+run ```composer install``` on the project route
 
-Travello started out by selling their own products (like experiences/tours/events) for a while. They became quite successful and they decided to integrate with 3rd party providers to expand their range of products.
+custom your ```.env``` file
 
-Here you are expected to write a minimal working API for the business.
+run ```php artisan migrate``` to migration database
 
-We have bootstrapped the project in a Laravel enviorment.
-This is the initial [database schema](https://dbdiagram.io/d/630380baf1a9b01b0fbb25ca).
+run ```php artisan serve``` on command line
 
-## Tasks
 
 ### 1. Search API
 
-First you are expected to deliver Travello products through the search API:
+call ```http://127.0.0.1:8000/api/search```
 
--   Accessible by `GET /search` route.
--   Only **available** products should be shown.
--   Optionally filter by `startDate` and `endDate`. Default is 2 weeks from today.
+for seeing result
 
-Sample response structure:
-
-```json
-[
-    {
-        "title": "Desert Safari",
-        "minimumPrice": "250.0 AED",
-        "thumbnail": "https://picsum.photos/300/200"
-    }
-]
-```
-
-### 2. Integration
-
-Now you are in charge of the integration. This is the primary focus of this challenge.
-
-The idea is to have **transparent** integration with the ever-increasing list of providers.  
-By transparent, we mean the Search API always presents the same response structure [as detailed above] for all sort of products.
-
-#### Provider
-
-Here is a fictional provider you need to integrate with:
-
-1. Heavenly Tours ([API Docs](https://documenter.getpostman.com/view/24789999/2s8Z6zyrnn))
-
-## Delivery
-
-1. Clone this repository under your own git namespace.
-2. Write us _your_ best code.
-3. Send us the link to the repository.
-
-We appreciate your time and effort in advance. Good luck!
+Thanks
