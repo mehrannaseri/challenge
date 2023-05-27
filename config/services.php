@@ -30,5 +30,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'providers' => [
+        [
+            'name' => 'HeavenlyTours',
+            'base_url' => env('HEAVENLY_TOURS_URL', 'http://161.35.193.238:3006/api'),
+        ]
+    ]
 
 ];

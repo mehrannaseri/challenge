@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SearchProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,7 +21,7 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
-    public function index(SearchProductRequest $request)
+    public function index(SearchProductRequest $request) :JsonResponse
     {
         $response = $this->productService->search($request->validated());
 

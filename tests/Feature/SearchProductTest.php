@@ -4,10 +4,13 @@ namespace Tests\Feature;
 
 use App\Models\Availability;
 use App\Models\Product;
+use App\Services\IntegrationService;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Http;
+use Mockery;
 use Tests\TestCase;
 
 class SearchProductTest extends TestCase
@@ -33,6 +36,11 @@ class SearchProductTest extends TestCase
     public function test_search_unavailable_products_without_integration_and_date_filter()
     {
         Product::factory()->create();
+
+
+        Http::fake([
+            'http://161.35.193.238:3006/api/tours' => Http::response([], 200)
+        ]);
 
         $response = $this->get('api/search');
 
@@ -78,6 +86,10 @@ class SearchProductTest extends TestCase
 
         Availability::factory()->create();
 
+        Http::fake([
+            'http://161.35.193.238:3006/api/tours' => Http::response([], 200)
+        ]);
+
         $product = Product::withMin('availabilities', 'price')->first();
 
         $response = $this->get('api/search');
@@ -98,6 +110,10 @@ class SearchProductTest extends TestCase
         $product = Product::factory()->create();
 
         Availability::factory(10)->create(['product_id' => $product->id]);
+
+        Http::fake([
+            'http://161.35.193.238:3006/api/tours' => Http::response([], 200)
+        ]);
 
         $product->loadMin('availabilities', 'price');
 
